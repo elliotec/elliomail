@@ -1,21 +1,19 @@
 const express = require('express')
-// const bodyParser = require('body-parser')
 const cors = require('cors')
 const nodemailer = require('nodemailer')
 const dotenv = require('dotenv')
 const app = express()
-const port = 8000
 
 dotenv.config()
 
-const { ZOHO_USER, ZOHO_PASS } = process.env;
+const { ZOHO_USER, ZOHO_PASS, PORT } = process.env;
 
 app.use(express.urlencoded({ extended: true }));
 app.use(cors())
 
-const corsOptions = {
-  origin: 'https://elliotec.com'
-}
+// const corsOptions = {
+//   origin: 'https://elliotec.com'
+// }
 
 const transporter = nodemailer.createTransport({
     host: 'smtp.zoho.com',
@@ -29,6 +27,7 @@ const transporter = nodemailer.createTransport({
 
 let mailOptions
 
+// app.post('/contact', cors(corsOptions) (req, res) => {
 app.post('/contact', (req, res) => {
   console.log(req.body)
   mailOptions = {
@@ -48,5 +47,5 @@ app.post('/contact', (req, res) => {
   })
 })
 
-app.listen(port, () => console.log(`elliomail listening on port ${port}!`))
+app.listen(PORT, () => console.log(`elliomail listening on port ${PORT}!`))
 
