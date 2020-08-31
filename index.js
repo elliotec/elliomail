@@ -32,7 +32,7 @@ app.post('/contact', (req, res) => {
     to: ZOHO_USER,
     from: `"elliotec.com contact form" <${ZOHO_USER}>`,
     subject: req.body.subject,
-    html: `<h4>From: ${req.body.name} - ${req.body.email}</h4><hr/><p>${req.body.message}</p>`
+    html: `<h3>From: ${req.body.name} - ${req.body.email}</h3><hr/><p>${req.body.message}</p>`
   }
   transporter.sendMail(mailOptions, (err, info) => {
     if (err) {
