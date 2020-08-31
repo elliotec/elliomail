@@ -11,11 +11,11 @@ dotenv.config()
 const { ZOHO_USER, ZOHO_PASS } = process.env;
 
 app.use(express.urlencoded({ extended: true }));
-// app.use(cors())
+app.use(cors())
 
-// const corsOptions = {
-//   origin: '*' //'https://elliotec.com'
-// }
+const corsOptions = {
+  origin: 'https://elliotec.com'
+}
 
 const transporter = nodemailer.createTransport({
     host: 'smtp.zoho.com',
