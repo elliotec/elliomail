@@ -1,5 +1,4 @@
 const express = require('express')
-const cors = require('cors')
 const nodemailer = require('nodemailer')
 const dotenv = require('dotenv')
 const app = express()
@@ -9,11 +8,7 @@ dotenv.config()
 const { ZOHO_USER, ZOHO_PASS, PORT } = process.env;
 
 app.use(express.urlencoded({ extended: true }));
-app.use(cors())
-
-// const corsOptions = {
-//   origin: 'https://elliotec.com'
-// }
+app.use(express.static('.'));
 
 const transporter = nodemailer.createTransport({
     host: 'smtp.zoho.com',
@@ -27,7 +22,10 @@ const transporter = nodemailer.createTransport({
 
 let mailOptions
 
-// app.post('/contact', cors(corsOptions) (req, res) => {
+app.get('/', (req, res) => {
+  res.render('index.html')
+})
+
 app.post('/contact', (req, res) => {
   console.log(req.body)
   mailOptions = {
