@@ -26,7 +26,7 @@ app.get('/', (req, res) => {
   res.render('index.html')
 })
 
-app.post('/contact', (req, res) => {
+app.post('/', (req, res) => {
   console.log(req.body)
   mailOptions = {
     to: ZOHO_USER,
